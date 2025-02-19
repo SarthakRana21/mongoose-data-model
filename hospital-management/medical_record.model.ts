@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 interface IMedicalRecord {
     patient: mongoose.Schema.Types.ObjectId,
-    diagonisedWith: String[],
-    doctor: mongoose.Schema.Types.ObjectId[],
+    diagonisedWith: string[],
+    doctors: mongoose.Schema.Types.ObjectId[],
     admitted: boolean,
-    hospital: mongoose.Schema.Types.ObjectId[]
+    hospitals: mongoose.Schema.Types.ObjectId[]
 }
 
 const medicalRecordSchema = new mongoose.Schema<IMedicalRecord>({
@@ -17,14 +17,14 @@ const medicalRecordSchema = new mongoose.Schema<IMedicalRecord>({
     diagonisedWith: [
         {type: String, required: true}
     ],
-    doctor: [
+    doctors: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'Doctor', required: true}
     ],
     admitted: {
         type: Boolean,
         required: true
     },
-    hospital: [
+    hospitals: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'Hospital', required: true}
     ]
 }, {timestamps: true})
